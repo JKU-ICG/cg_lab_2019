@@ -874,16 +874,24 @@ function modelRenderer(model) {
     gl.enableVertexAttribArray(positionLoc);
     gl.vertexAttribPointer(positionLoc, 3, gl.FLOAT, false, 0, 0);
     var texCoordLoc = gl.getAttribLocation(shader, 'a_texCoord');
-    if (isValidAttributeLocation(texCoordLoc) && model.texture) {
-      gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-      gl.enableVertexAttribArray(texCoordLoc);
-      gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 0, 0);
+    if (isValidAttributeLocation(texCoordLoc)) {
+      if(!model.texture) {
+        gl.disableVertexAttribArray(texCoordLoc);
+      } else {
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        gl.enableVertexAttribArray(texCoordLoc);
+        gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 0, 0);
+      }
     }
     var normalLoc = gl.getAttribLocation(shader, 'a_normal');
-    if (isValidAttributeLocation(normalLoc) && model.normal) {
-      gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
-      gl.enableVertexAttribArray(normalLoc);
-      gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, 0, 0);
+    if (isValidAttributeLocation(normalLoc)) {
+      if(!model.normal) {
+        gl.disableVertexAttribArray(normalLoc);
+      } else {
+        gl.bindBuffer(gl.ARRAY_BUFFER, normalBuffer);
+        gl.enableVertexAttribArray(normalLoc);
+        gl.vertexAttribPointer(normalLoc, 3, gl.FLOAT, false, 0, 0);
+      }
     }
     //render elements
     if (model.index) {
