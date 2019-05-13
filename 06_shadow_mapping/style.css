@@ -1,0 +1,13 @@
+canvas {
+    width: 98vw;
+    height: 98vh;
+}
+
+p {
+    position: relative;
+    margin-top: -1.5em;
+    font: bold 2em Verdana;
+    color: #2F4F4F;
+    letter-spacing: 1px;
+    text-align: center;
+}
